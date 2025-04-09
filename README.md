@@ -65,6 +65,7 @@ Wie bereits eingangs erwähnt, überwacht autostart ab sofort, ob ein externes U
 ## Beispiel: synchrone rsync Datensicherung auf einen externen Datenträger
 Zur Veranschaulichung wird im Folgenden ein rsync-Skript zur synchronen Datensicherung interner Datenbestände auf einen externen Datenträger ausgeführt. 
 
+- Schließe einen externen USB Datenträger an dein UGREEN-NAS an.
 - Erstelle mit Hilfe der App TextEdit, die über das UGOS Pro App Center installiert werden kann, eine neue leere Datei mit dem Namen autostart.sh und speichere sie im Wurzelverzeichnis des externen Laufwerks bzw. auf einer dort eingebundenen Partition ab. 
 - Öffne dieses GitHub-Repository in einem Browser deiner Wahl und wechsle in das Verzeichnis /scripts 
 
@@ -83,7 +84,10 @@ Zur Veranschaulichung wird im Folgenden ein rsync-Skript zur synchronen Datensic
     ![13_UGREEN_autostart_raw](/images/13_UGREEN_autostart_raw.png)
 
 - Schau dir den Inhalt der Datei autostart.sh an, beachte dabei die Hilfetexte im Abschnitt Benutzereingaben und passe die Variablen für das Zielverzeichnis, die Datensicherungsquelle(n) usw. deinen Bedürfnissen an.
-- Speicher die Datei anschließend erneut ab und schließe sie.
+
+    ![14_UGREEN_autostart_raw](/images/13_UGREEN_autostart_raw.png)
+
+- Speicher die Datei erneut ab und schließe sie.
 - Entferne anschließend den externen Datenträger und steck ihn erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden.
 
 ## Deinstallationshinweise
