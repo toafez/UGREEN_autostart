@@ -1,9 +1,9 @@
 # autostart für externe Datenträger
 
-**autostart** ermöglicht das **Ausführen von beliebigen Shellscript Anweisungen**, die **nach** dem **Anschluss eines externen USB Datenträgers** an deine **UGREEN-NAS** automatisch ausgeführt werden. 
+**autostart** ermöglicht das **Ausführen von beliebigen Shell-Skript-Anweisungen**, die **nach** dem **Anschluss eines externen USB Datenträgers** an deine **UGREEN-NAS** automatisch ausgeführt werden. 
 
 ## Wie funktioniert autostart
-Wird ein externer USB Datenträger an das **UGREEN-NAS** angeschlossen, wird dieser zunächst von **UGOS Pro** erkannt und in das System eingebunden (gemounted). Anschließend prüft **autostart**, ob sich im Wurzelverzeichnis des externen USB Datenträgers bzw. auf den eingebundenen Partitionen eine Shell-Skript-Datei mit dem Namen autostart.sh befindet. Ist dies der Fall, wird der Inhalt der Shell-Skript-Datei ausgeführt, andernfalls wird die Überwachung für diesen Datenträger beendet. Nach der Ausführung der Shell-Skript-Datei wird eine Protokolldatei mit dem Namen autostart.log im Wurzelverzeichnis des externen USB Datenträgers abgelegt.
+Wird ein externer USB Datenträger an das **UGREEN-NAS** angeschlossen, wird dieser zunächst von **UGOS Pro** erkannt und in das System eingebunden (gemounted). Anschließend prüft **autostart**, ob sich im Wurzelverzeichnis des externen USB Datenträgers bzw. auf den eingebundenen Partitionen eine Shell-Skript-Datei mit dem Namen **autostart.sh** befindet. Ist dies der Fall, wird der Inhalt der Shell-Skript-Datei ausgeführt, andernfalls wird die Überwachung für diesen Datenträger beendet. Nach der Ausführung der Shell-Skript-Datei wird eine Protokolldatei mit dem Namen **autostart.log** im Wurzelverzeichnis des externen USB Datenträgers abgelegt.
 
 ## Sicherheitshinweise
 Nach der Einrichtung von **autostart** wird der Inhalt der Datei **autostart.sh** nach jedem Einstecken eines externen USB Datenträgers mit **root-Rechten** ausgeführt. Dies gibt dem Benutzer einerseits große Freiheiten, andererseits aber auch ein hohes Maß an Verantwortung. Neben unbeabsichtigten oder nicht vorhersehbaren Fehlern im Skript selbst, die zum Teil erheblichen Schaden anrichten können, kann es auch zu absichtlichen Versuchen der Kompromittierung durch Dritte kommen, wenn diese Kenntnis von der Existenz von autostart auf deinem UGREEN-NAS haben.
