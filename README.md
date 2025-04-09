@@ -85,7 +85,7 @@ Zur Veranschaulichung wird im Folgenden ein rsync-Skript zur synchronen Datensic
 
 - Schau dir den Inhalt der Datei autostart.sh an, beachte dabei die Hilfetexte im Abschnitt Benutzereingaben und passe die Variablen für das Zielverzeichnis, die Datensicherungsquelle(n) usw. deinen Bedürfnissen an.
 
-    ![14_UGREEN_autostart_raw](/images/13_UGREEN_autostart_raw.png)
+    ![14_UGREEN_autostart_raw](/images/14_UGREEN_autostart_raw.png)
 
 - Speicher die Datei erneut ab und schließe sie.
 - Entferne anschließend den externen Datenträger und steck ihn erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden.
