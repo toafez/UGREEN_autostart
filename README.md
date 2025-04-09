@@ -66,10 +66,23 @@ Wie bereits eingangs erwähnt, überwacht autostart ab sofort, ob ein externes U
 Zur Veranschaulichung wird im Folgenden ein rsync-Skript zur synchronen Datensicherung interner Datenbestände auf einen externen Datenträger ausgeführt. 
 
 - Erstelle mit Hilfe der App TextEdit, die über das UGOS Pro App Center installiert werden kann, eine neue leere Datei mit dem Namen autostart.sh und speichere sie im Wurzelverzeichnis des externen Laufwerks bzw. auf einer dort eingebundenen Partition ab. 
-- Öffne dieses GitHub-Repository in einem Browser deiner Wahl, wechsle in das Verzeichnis /scripts und klicke auf die Shell-Skript-Datei autostart.sh, um sich den Inhalt der Datei anzuzeigen zu lassen.
+- Öffne dieses GitHub-Repository in einem Browser deiner Wahl und wechsle in das Verzeichnis /scripts 
+
+    ![10_UGREEN_autostart_raw](/images/10_UGREEN_autostart_raw.png)
+
+- Klicke auf die Shell-Skript-Datei autostart.sh, um sich den Inhalt der Datei anzuzeigen zu lassen.
+
+    ![11_UGREEN_autostart_raw](/images/11_UGREEN_autostart_raw.png)
+
 - Klicke dann auf die Schaltfläche Raw in der Menüleiste oben rechts.
-- Markiere nun den gesamten Text und kopiere den Inhalt in die geöffnete Datei autostart.sh der App TextEdit.
-- Schau dir den Inhalt der Datei an, beachte dabei die Hilfetexte im Abschnitt Benutzereingaben und passe die Variablen für das Zielverzeichnis, die Datensicherungsquelle(n) usw. deinen Bedürfnissen an.
+
+    ![12_UGREEN_autostart_raw](/images/12_UGREEN_autostart_raw.png)
+
+- Klicke mit der rechten Maustaste in das Fenster und wähle aus dem sich öffnenden Kontextmenü "Alles auswählen" bzw. "Alles markieren". Klicke erneut mit der rechten Maustaste in das Fenster und wähle aus dem sich öffnenden Kontextmenü "Kopieren" und füge den kopierten Inhalt in die geöffnete Datei autostart.sh der App TextEdit ein.
+
+    ![13_UGREEN_autostart_raw](/images/13_UGREEN_autostart_raw.png)
+
+- Schau dir den Inhalt der Datei autostart.sh an, beachte dabei die Hilfetexte im Abschnitt Benutzereingaben und passe die Variablen für das Zielverzeichnis, die Datensicherungsquelle(n) usw. deinen Bedürfnissen an.
 - Speicher die Datei anschließend erneut ab und schließe sie.
 - Entferne anschließend den externen Datenträger und steck ihn erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden.
 
