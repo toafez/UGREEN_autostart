@@ -10,7 +10,7 @@ mountpoint="${2}"
 #              MIT License https://mit-license.org/
 #        Member of the German UGREEN Forum - DACH Community
 #
-#       Dieses Script wurde speziell für die Verwendung auf 
+#       Dieses Script wurde speziell für die Verwendung auf
 #            UGREEN-NAS Systemen entwickelt die das
 #              Betriebsystem UGOS Pro verwenden.
 
@@ -23,13 +23,13 @@ mountpoint="${2}"
 #---------------------------------------------------------------------
 # Syntaxmuster: target="/[VOLUME]/[SHARE]/[FOLDER]"
 #---------------------------------------------------------------------
-# Dem Pfad zum Zielverzeichnis muss in jedem Fall die Variable 
-# ${mountpoint} vorangestellt werden. Weitere Unterverzeichnisse sind
-# möglich. Wenn das Zielverzeichnis nicht existiert, wird es bei der 
-# ersten Datensicherung angelegt. Ungültige Zeichen in Datei- und 
+# Dem Pfad zum Zielverzeichnis muss in jedem Fall die Variable
+# ${mountpoint}/ vorangestellt werden. Weitere Unterverzeichnisse sind
+# möglich. Wenn das Zielverzeichnis nicht existiert, wird es bei der
+# ersten Datensicherung angelegt. Ungültige Zeichen in Datei- und
 # Verzeichnisnamen sind ~ " # % & * : < > ? / \ { | }
 #---------------------------------------------------------------------
-target="${mountpoint}/UGOS-Backup"
+target="${mountpoint}/"
 
 # Datensicherungsquelle(n)
 #---------------------------------------------------------------------
@@ -37,12 +37,12 @@ target="${mountpoint}/UGOS-Backup"
 #---------------------------------------------------------------------
 # Es muss der vollständige Pfad zum Quellverzeichnis angegeben werden.
 # Wenn mehr als ein Quellverzeichnis angegeben wird, müssen die Pfade
-# durch das Symbol & getrennt werden, z. B. 
-# "/volume1/photo & /volume1/music/compilation & /volume1/video/series" 
+# durch das Symbol & getrennt werden, z. B.
+# "/volume1/photo & /volume1/music/compilation & /volume1/video/series"
 # Ungültige Zeichen in Datei- und Verzeichnisnamen sind
 # ~ " # % & * : < > ? / \ { | }
 #---------------------------------------------------------------------
-sources="/volume1/Downloads & /volume1/docker/it-tools & /volume1/docker/stirling-pdf"
+sources=""
 
 # Inhalt des Papierkorbs /@recycle löschen, der älter ist als...
 #---------------------------------------------------------------------
