@@ -41,13 +41,13 @@ Um eine SSH-Verbindung zu deinem UGREEN-NAS herzustellen, musst du zuerst den SS
 		MyAdmin@UGREEN-NAS:~$
 
 ## Scriptdateien downloaden und Rechte einstellen.
-Nun musst du eine UDEV-Regel-Datei und eine weitere Shell-Skript-Datei von diesem GitHub-Repository auf dein UGREEN-NAS herunterladen. Beginne mit dem UDEV-Regel-Datei, kopiere die folgende Befehlszeile in dein geöffnetes Terminalfenster und führe den Befehl aus.
+Nun musst du eine UDEV-Regel-Datei und eine weitere Shell-Skript-Datei von diesem GitHub-Repository auf dein UGREEN-NAS herunterladen. Beginne mit dem UDEV-Regel-Datei **99-usb-device-detection.rules**, kopiere die folgende Befehlszeile in dein geöffnetes Terminalfenster und führe den Befehl aus.
 
 	sudo curl -L https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/99-usb-device-detection.rules -o /usr/lib/udev/rules.d/99-usb-device-detection.rules
 
 Da der Befehl als Systembenutzer root ausgeführt werden muss (erkennbar am vorangestellten sudo-Befehl), wirst du ein weiteres Mal nach einem Passwort gefragt. Hier gibst du das gleiche Passwort ein, das du bereits für die Anmeldung als Administrator verwendet hast.
 
-Fahre nun mit der Shell-Skript-Datei fort, kopiere die folgende Befehlszeile in dein geöffnetes Terminalfenster und führe den Befehl ebenfalls aus.
+Fahre nun mit der Shell-Skript-Datei **usb-autostart-script-detection.sh** fort, kopiere die folgende Befehlszeile in dein geöffnetes Terminalfenster und führe den Befehl ebenfalls aus.
 
 	sudo curl -L https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/usb-autostart-script-detection.sh -o /usr/local/bin/usb-autostart-script-detection.sh
 
