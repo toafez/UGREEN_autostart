@@ -73,15 +73,15 @@ if [ -n "${mountpoint}" ] && [ -f "${mountpoint}/autostart.sh" ]; then
 	[ ! -f "${logfile}" ] && install -m 777 /dev/null "${logfile}"
 
 	echo "" > "${logfile}"
-	echo "------------------------------------------------------------" >> "${logfile}"
-	echo "autostart für externe Datenträger" >> "${logfile}"
-	echo " - Skript Version 0.1-000" >> "${logfile}"
-	echo " - Disk: ${disk}" >> "${logfile}"
-	echo " - Device: ${device}" >> "${logfile}"
-	echo " - Mountpoint: ${mountpoint}" >> "${logfile}"
-	echo " - Auszuführendes autostart Skript: ${scriptfile}" >> "${logfile}"
-	echo "------------------------------------------------------------" >> "${logfile}"
-	echo "" >> "${logfile}"
+	echo "------------------------------------------------------------" | tee -a "${logfile}"
+	echo "autostart für externe Datenträger" | tee -a "${logfile}"
+	echo " - Skript Version 0.1-000" | tee -a "${logfile}"
+	echo " - Disk: ${disk}" | tee -a "${logfile}"
+	echo " - Device: ${device}" | tee -a "${logfile}"
+	echo " - Mountpoint: ${mountpoint}" | tee -a "${logfile}"
+	echo " - Auszuführendes autostart Skript: ${scriptfile}" | tee -a "${logfile}"
+	echo "------------------------------------------------------------" | tee -a "${logfile}"
+	echo "" | tee -a "${logfile}"
 
     # ----------------------------------------------------------
 	# Run the autostart script
@@ -96,11 +96,11 @@ if [ -n "${mountpoint}" ] && [ -f "${mountpoint}/autostart.sh" ]; then
     # ----------------------------------------------------------
 	# Stop the autostart script
 	# ----------------------------------------------------------
-	echo "" >> "${logfile}"
-	echo "------------------------------------------------------------" >> "${logfile}"
+	echo "" | tee -a "${logfile}"
+	echo "------------------------------------------------------------" | tee -a "${logfile}"
 	duration="$(($(date +%s) - timestamp_start))"
-	echo "Das autostart Skript wurde beendet! " >> "${logfile}"
-	echo "Ausgegebener Rückgabewert (Exit-Code): ${exit_script}" >> "${logfile}"
-	echo "Dauer der Skriptausführung: "$(printf '%dh:%dm:%ds\n' $((duration/3600)) $((duration%3600/60)) $((duration%60)))"" >> "$logfile"
-	echo "------------------------------------------------------------" >> "${logfile}"
+	echo "Das autostart Skript wurde beendet! " | tee -a "${logfile}"
+	echo "Ausgegebener Rückgabewert (Exit-Code): ${exit_script}" | tee -a "${logfile}"
+	echo "Dauer der Skriptausführung: "$(printf '%dh:%dm:%ds\n' $((duration/3600)) $((duration%3600/60)) $((duration%60)))"" | tee -a "${logfile}"
+	echo "------------------------------------------------------------" | tee -a "${logfile}"
 fi

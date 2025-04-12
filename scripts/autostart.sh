@@ -12,7 +12,7 @@ mountpoint="${2}"
 #
 #       Dieses Script wurde speziell für die Verwendung auf
 #            UGREEN-NAS Systemen entwickelt die das
-#              Betriebsystem UGOS Pro verwenden.
+#              Betriebsystem OGOS Pro verwenden.
 
 
 #---------------------------------------------------------------------
@@ -24,7 +24,7 @@ mountpoint="${2}"
 # Syntaxmuster: target="/[VOLUME]/[SHARE]/[FOLDER]"
 #---------------------------------------------------------------------
 # Dem Pfad zum Zielverzeichnis muss in jedem Fall die Variable
-# ${mountpoint}/ vorangestellt werden. Weitere Unterverzeichnisse sind
+# ${mountpoint} vorangestellt werden. Weitere Unterverzeichnisse sind
 # möglich. Wenn das Zielverzeichnis nicht existiert, wird es bei der
 # ersten Datensicherung angelegt. Ungültige Zeichen in Datei- und
 # Verzeichnisnamen sind ~ " # % & * : < > ? / \ { | }
@@ -58,7 +58,7 @@ sources=""
 # Wird für recycle= der Wert "true" angegeben, so werden
 # zwischenzeitlich gelöschte Daten der Sicherungsquelle(n) immer in
 # den Papierkorb unter /@recycle des Zielordners verschoben, ohne dass
-# sie zukünftig gelöscht werden. 
+# sie zukünftig gelöscht werden.
 #---------------------------------------------------------------------
 recycle="30"
 
@@ -66,7 +66,7 @@ recycle="30"
 #---------------------------------------------------------------------
 # Syntaxmuster: syncopt="-ah" (Standardauswahl)
 #---------------------------------------------------------------------
-syncopt="-ah"
+syncopt="-ah --info=progress2"
 
 # Ausschließen von Dateien und Verzeichnissen
 #---------------------------------------------------------------------
@@ -117,11 +117,11 @@ exclude="--delete-excluded --exclude=@eaDir/*** --exclude=@Logfiles/*** --exclud
 
 	# If the target folder could not be created
 	if [[ "${exit_mkdir}" -ne 0 ]]; then
-		echo "# $(timestamp) Starte synchrone rsync Datensicherung auf einen externen Datenträger..." >> "${logfile}"
-		echo " - Warnung: Der Zielordner konnte nicht erstellt werden." >> "${logfile}"
+		echo "# $(timestamp) Starte synchrone rsync Datensicherung auf einen externen Datenträger..." | tee -a "${logfile}"
+		echo " - Warnung: Der Zielordner konnte nicht erstellt werden." | tee -a "${logfile}"
 		exit_code=1
 	else
-		echo "# $(timestamp) Starte synchrone rsync Datensicherung auf einen externen Datenträger..." >> "${logfile}"
+		echo "# $(timestamp) Starte synchrone rsync Datensicherung auf einen externen Datenträger..." | tee -a "${logfile}"
 		exit_code=0
 
 	fi
@@ -145,8 +145,8 @@ fi
 if [[ ${exit_code} -eq 0 ]]; then
 	# If the ionice program is installed, use it, otherwise use the rsync bandwidth limitation
 	if command -v ionice 2>&1 >/dev/null; then
-		echo " - Das Programm [ ionice ] optimiert die Lese- und Schreibgeschwindigkeit des rsync-Prozesses" >> "${logfile}"
-		echo "   um die Verfügbarkeit des Systems während der Datensicherung zu gewährleisten!" >> "${logfile}"
+		echo " - Das Programm [ ionice ] optimiert die Lese- und Schreibgeschwindigkeit des rsync-Prozesses" | tee -a "${logfile}"
+		echo "   um die Verfügbarkeit des Systems während der Datensicherung zu gewährleisten!" | tee -a "${logfile}"
 		ionice="ionice -c 3"
 	fi
 fi
@@ -164,10 +164,10 @@ if [[ ${exit_code} -eq 0 ]]; then
 		# ------------------------------------------------------
 		# Beginn rsync loop
 		# ------------------------------------------------------
-		echo "" >> "${logfile}"
-		echo "# $(timestamp) Schreibe rsync-Protokoll..." >> "${logfile}"
-		echo " - Quellverzeichnis: ${source}" >> "${logfile}"
-		echo " - Zielverzeichnis: ${target}${source##*/}" >> "${logfile}"
+		echo "" | tee -a "${logfile}"
+		echo "# $(timestamp) Schreibe rsync-Protokoll..." | tee -a "${logfile}"
+		echo " - Quellverzeichnis: ${source}" | tee -a "${logfile}"
+		echo " - Zielverzeichnis: ${target}${source##*/}" | tee -a "${logfile}"
 		${ionice} \
 		rsync \
 		${syncopt} \
@@ -175,24 +175,24 @@ if [[ ${exit_code} -eq 0 ]]; then
 		--delete \
 		${backup} \
 		${exclude} \
-		"${source}" "${target}" >> "${logfile}"
+		"${source}" "${target}" > >(tee -a "${logfile}") 2>&1
 		rsync_exit_code=${?}
-		
+
 		# ------------------------------------------------------
 		# rsync error analysis after rsync run...
 		# ------------------------------------------------------
 		if [[ "${rsync_exit_code}" -ne 0 ]]; then
-			echo "" >> "${logfile}"
-			echo "Warnung: Rsync meldet Fehlercode ${rsync_exit_code}!" >> "${logfile}"
-			echo " - Prüfe das Protokoll für weitere Informationen." >> "${logfile}"
-			echo "" >> "${logfile}"
+			echo "" | tee -a "${logfile}"
+			echo "Warnung: Rsync meldet Fehlercode ${rsync_exit_code}!" | tee -a "${logfile}"
+			echo " - Prüfe das Protokoll für weitere Informationen." | tee -a "${logfile}"
+			echo "" | tee -a "${logfile}"
 			exit_code=1
 		else
 			exit_code=0
 		fi
 	done
-	echo "" >> "${logfile}"
-	echo "# $(timestamp) Der Auftrag wird abgeschlossen..." >> "${logfile}"
+	echo "" | tee -a "${logfile}"
+	echo "# $(timestamp) Der Auftrag wird abgeschlossen..." | tee -a "${logfile}"
 fi
 
 # --------------------------------------------------------------
@@ -200,12 +200,12 @@ fi
 # --------------------------------------------------------------
 if [[ ${exit_code} -eq 0 ]]; then
 	if [ -n "${recycle}" ] && [[ "${recycle}" -ne 0 ]] && [[ "${recycle}" =~ ${is_number} ]]; then
-		echo " - Zwischenzeitlich gelöschte Daten der Sicherungsquelle(n) werden in den" >> "${logfile}"
-		echo "   Ordner /@recycle, des Sicherungsziels verschoben." >> "${logfile}"
+		echo " - Zwischenzeitlich gelöschte Daten der Sicherungsquelle(n) werden in den" | tee -a "${logfile}"
+		echo "   Ordner /@recycle, des Sicherungsziels verschoben." | tee -a "${logfile}"
 		if [ -d "${target%/*}/@recycle" ]; then
 			find "${target%/*}/@recycle/"* -maxdepth 0 -type d -mtime +${recycle} -print0 | xargs -0 rm -r 2>/dev/null
 			if [[ ${?} -eq 0 ]]; then
-				echo " - Daten aus dem Ordner /@recycle, die älter als ${recycle} Tage waren, wurden gelöscht." >> "${logfile}"
+				echo " - Daten aus dem Ordner /@recycle, die älter als ${recycle} Tage waren, wurden gelöscht." | tee -a "${logfile}"
 			fi
 		fi
 	fi
@@ -216,10 +216,10 @@ fi
 # ------------------------------------------------------------------------
 if [[ "${exit_code}" -eq 0 ]]; then
 	# Notification that the backup job was successfully executed
-	echo " - Der Sicherungsauftrag wurde erfolgreich ausgeführt." >> "${logfile}"
+	echo " - Der Sicherungsauftrag wurde erfolgreich ausgeführt." | tee -a "${logfile}"
 	exit 0
 else
 	# Notification that the backup job contained errors
-	echo " - Warnung: Der Sicherungsauftrag ist fehlgeschlagen oder wurde abgebrochen." >> "${logfile}"
+	echo " - Warnung: Der Sicherungsauftrag ist fehlgeschlagen oder wurde abgebrochen." | tee -a "${logfile}"
 	exit 1
 fi
