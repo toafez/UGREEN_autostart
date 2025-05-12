@@ -64,7 +64,7 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
 	  sudo chmod +x /usr/local/bin/usb-autostart-script-detection.sh
 	
 
-  Wie bereits eingangs erwähnt, überwacht autostart ab sofort, ob ein externes USB Laufwerk an das UGREEN-NAS angeschlossen wurde und prüft, ob sich im Wurzelverzeichnis dieses externen Datenträgers bzw. auf den eingebundenen Partitionen ein Ausführungsskript mit dem Namen **autostart.sh** befindet. Derzeit sollte noch kein Ausführungsskript mit diesem Dateinamen existieren, daher wird es nachfolgend erstellt. 
+  Wie bereits eingangs erwähnt, überwacht autostart ab sofort, ob ein externer USB Datenträger an das UGREEN-NAS angeschlossen wurde und prüft, ob sich im Wurzelverzeichnis dieses externen Datenträgers bzw. auf den eingebundenen Partitionen ein Ausführungsskript mit dem Namen **autostart.sh** befindet. Derzeit sollte noch kein Ausführungsskript mit diesem Dateinamen existieren, daher wird es nachfolgend erstellt. 
 
 - ### Das Ausführungsskript (autostart.sh)
   Im weiteren Verlauf bleibt es jedem selbst überlassen, welche Shellskripte durch das Ausführungsskript ausgeführt werden und welche Aufgaben damit verbunden sein sollen. Es gibt auch keine großen Anforderungen wie die Vergabe von Zugriffsrechten auf diese Datei, wichtig ist nur, dass der Name der Datei immer **autostart.sh** lautet. 
@@ -92,7 +92,7 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
       MyAdmin@UGREEN-NAS:/mnt/@usb/sdc1$ pwd
       /mnt/@usb/sdc1
 
-  Du befindest dich nun im Wurzelverzeichnis deines USB-Sticks. Hier hast du zwei Möglichkeiten: Entweder du erstellst eine leere Skriptdatei mit dem Namen **autostart.sh** und füllst sie mit eigenen Inhalten. Oder du lädst mein nachfolgendes Beispielskript von GitHub herunter, um eine **Synchrone Datensicherung mit optionalem Löschschutz auf einen externen Datenträger** durchzuführen. Dazu kannst du folgenden Befehl ausführen:
+  Du befindest dich nun im Wurzelverzeichnis deines USB-Datenträgers. Hier hast du zwei Möglichkeiten: Entweder du erstellst eine leere Skriptdatei mit dem Namen **autostart.sh** und füllst sie mit eigenen Inhalten. Oder du lädst mein nachfolgendes Beispielskript von GitHub herunter, um eine **Synchrone Datensicherung mit optionalem Löschschutz auf einen externen Datenträger** durchzuführen. Dazu kannst du folgenden Befehl ausführen:
 
       curl -L -O https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/autostart.sh
 
@@ -106,7 +106,7 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
 
   Nachdem du alle Anpassungen ausgeführt hast, speichere die Datei ab und schließe die TextEdit-App.
 
-   Entferne anschließend den externen Datenträger, indem du in der **Dateien**-App einen Rechtsklick auf den Menüeintrag **Externer Speicher 1** (gemäß diesem Beispiel) ausführst. Wähle im sich öffnenden Kontextmenü den einzigen auswählbaren Punkt **Entfernen** aus und ziehe den USB-Stick von deinem UGREEN-NAS ab. Stecke ihn anschließend erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden. Beachte dabei das mitlaufende Protokoll **autostart.log**, das während der Datensicherung im Wurzelverzeichnis des externen USB-Datenträgers angelegt wird.
+   Entferne anschließend den externen Datenträger, indem du in der **Dateien**-App einen Rechtsklick auf den Menüeintrag **Externer Speicher 1** (gemäß diesem Beispiel) ausführst. Wähle im sich öffnenden Kontextmenü den einzigen auswählbaren Punkt **Entfernen** aus und ziehe den USB-Datenträger von deinem UGREEN-NAS ab. Stecke ihn anschließend erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden. Beachte dabei das mitlaufende Protokoll **autostart.log**, das während der Datensicherung im Wurzelverzeichnis des externen USB-Datenträgers angelegt wird.
 
 ## Deinstallationshinweise
 Aufgrund der oben genannten Sicherheitsmängel kann autostart bei Bedarf relativ einfach über die Kommandozeile deinstalliert werden. In erster Linie reicht es aus, die UDEV-Regel-Datei zu löschen, da dadurch die Überwachung beendet wird. Alternativ kann auch die Shell-Skript-Datei, die autostart.sh auf dem externen Datenträger ausführt, gelöscht werden.
