@@ -85,31 +85,28 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
 
   Wenn du jetzt die Eingabetaste drückst, solltest du in das entsprechende Verzeichnis wechseln. Der Prompt sollte nun etwa so aussehen
 
-      MyAdmin@UGREEN-NAS:/mnt/@usb/sdc1
+      MyAdmin@UGREEN-NAS:/mnt/@usb/sdc1$
 
+  Um ganz sicherzugehen, kannst du den Befehl `pwd` (Print Working Directory) eingeben, um dir das aktuelle Verzeichnis anzeigen zu lassen.
 
-Du befindest dich nun im Wurzelverzeichnis deines USB-Sticks. Hier kannst du nun eine leere Skriptdatei namens autostart.sh mit dem Befehl... 
+      MyAdmin@UGREEN-NAS:/mnt/@usb/sdc1$ pwd
+      /mnt/@usb/sdc1
 
-    touch autostart.sh
-
-...erstellen oder du lädst dir an dieser Stelle mein Beispielskript von GitHub herunter, welches dir eine **synchrone rsync-Datensicherung auf einen externen Datenträger** ermöglicht. Dazu kannst du folgenden Befehl ausführen
+  Du befindest dich nun im Wurzelverzeichnis deines USB-Sticks. Hier hast du zwei Möglichkeiten: Entweder du erstellst eine leere Skriptdatei mit dem Namen **autostart.sh** und füllst sie mit eigenen Inhalten. Oder du lädst mein nachfolgendes Beispielskript von GitHub herunter, um eine **synchrone rsync-Datensicherung auf einen externen Datenträger** durchzuführen. Dazu kannst du folgenden Befehl ausführen:
 
     curl -L -O https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/autostart.sh
 
-  Um den Inhalt der Datei autostart.sh zu bearbeiten, kannst du in der Konsole den Befehl...
+  Damit ist die Installation abgeschlossen. Die Überwachung der externen USB Datenträger ist nun aktiv und die Terminalverbindung kann durch Eingabe des Befehls `exit` beendet werden.
 
-    nano autostart.sh
+      MyAdmin@UGREEN-NAS:/mnt/@usb/sdc1$ exit
 
-   eingeben. Der Inhalt der Skriptdatei kann auch mit der Text Edit App bearbeitet werden, die über das UGOS Pro App Center installiert werden kann. 
- 
-  Beachte dabei in jedem Fall die Hilfetexte im Abschnitt Benutzereingaben und passe die Variablen für das Zielverzeichnis, die Datensicherungsquelle(n) usw. deinen Bedürfnissen an.
+  Den Inhalt der Skriptdatei **autostart.sh** kann man sich nun mit der **TextEdit** App bearbeitet werden, die über das **UGOS Pro App Center** installiert werden kann. Beachte dabei in jedem Fall die Hilfetexte im Abschnitt Benutzereingaben und passe die Variablen für das Zielverzeichnis, die Datensicherungsquelle(n) usw. deinen Bedürfnissen an.
 
   ![14_UGREEN_autostart_raw](/images/14_UGREEN_autostart_raw.png)
 
-  - Speicher die Datei erneut ab und schließe sie.
-  - Entferne anschließend den externen Datenträger und steck ihn erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden.
+  Nachdem du alle Anpassungen ausgeführt hast, speichere die Datei ab und schließe die TextEdit-App.
 
-Damit ist die Installation zunächst abgeschlossen. Die Überwachung der externen USB Datenträger ist nun aktiv und die Terminalverbindung kann durch Eingabe des Befehls exit beendet werden.
+  Entferne anschließend den externen Datenträger und stecke ihn erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden. Beachte dabei das mitlaufende Protokoll **autostart.log**, das während der Datensicherung im Wurzelverzeichnis des externen USB-Datenträgers angelegt wird.
 
 ## Deinstallationshinweise
 Aufgrund der oben genannten Sicherheitsmängel kann autostart bei Bedarf relativ einfach über die Kommandozeile deinstalliert werden. In erster Linie reicht es aus, die UDEV-Regel-Datei zu löschen, da dadurch die Überwachung beendet wird. Alternativ kann auch die Shell-Skript-Datei, die autostart.sh auf dem externen Datenträger ausführt, gelöscht werden.
