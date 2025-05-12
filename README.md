@@ -79,7 +79,7 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
 
   ![21_UGREEN_autostart_create](/images/21_UGREEN_autostart_create.png)
 
-  Wechsle zurück zur Konsole bzw. Kommandozeile und gib den Befehl `cd` mit anschließendem Leerzeichen ein, ohne die Eingabetaste zu drücken. Klicke nun mit der rechten Maustaste hinter den Befehl cd und wähle aus dem Kontextmenü "Einfügen", um den Pfad aus der Zwischenablage an dieser Stelle einzufügen. Das Ergebnis sollte wie folgt aussehen
+  Wechsle zurück zur Konsole bzw. Kommandozeile und gib den Befehl `cd` mit anschließendem Leerzeichen ein, **ohne** die Eingabetaste zu drücken. Klicke nun mit der rechten Maustaste hinter den Befehl `cd` und wähle aus dem Kontextmenü **Einfügen**, um den Pfad aus der Zwischenablage an dieser Stelle einzufügen. Das Ergebnis sollte wie folgt aussehen
 
       cd /mnt/@usb/sdc1
 
@@ -100,13 +100,13 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
 
       MyAdmin@UGREEN-NAS:/mnt/@usb/sdc1$ exit
 
-  Den Inhalt der Skriptdatei **autostart.sh** kann man sich nun mit der **TextEdit** App bearbeitet werden, die über das **UGOS Pro App Center** installiert werden kann. Beachte dabei in jedem Fall die Hilfetexte im Abschnitt Benutzereingaben und passe die Variablen für das Zielverzeichnis, die Datensicherungsquelle(n) usw. deinen Bedürfnissen an.
+  Den Inhalt der Skriptdatei **autostart.sh** kann man sich nun mit der **TextEdit** App bearbeitet werden, die über das **UGOS Pro App Center** installiert werden kann. Beachte dabei in jedem Fall die **Hilfetexte** im Abschnitt Benutzereingaben und passe die Variablen für das Zielverzeichnis, die Datensicherungsquelle(n) usw. deinen Bedürfnissen an.
 
   ![14_UGREEN_autostart_raw](/images/14_UGREEN_autostart_raw.png)
 
   Nachdem du alle Anpassungen ausgeführt hast, speichere die Datei ab und schließe die TextEdit-App.
 
-  Entferne anschließend den externen Datenträger und stecke ihn erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden. Beachte dabei das mitlaufende Protokoll **autostart.log**, das während der Datensicherung im Wurzelverzeichnis des externen USB-Datenträgers angelegt wird.
+   Entferne anschließend den externen Datenträger, indem du in der **Dateien**-App einen Rechtsklick auf den Menüeintrag **Externer Speicher 1** (gemäß diesem Beispiel) ausführst. Wähle im sich öffnenden Kontextmenü den einzigen auswählbaren Punkt **Entfernen** aus und ziehe den USB-Stick von deinem UGREEN-NAS ab. Stecke ihn anschließend erneut ein. Das Datensicherungs-Skript sollte nun ausgeführt werden. Beachte dabei das mitlaufende Protokoll **autostart.log**, das während der Datensicherung im Wurzelverzeichnis des externen USB-Datenträgers angelegt wird.
 
 ## Deinstallationshinweise
 Aufgrund der oben genannten Sicherheitsmängel kann autostart bei Bedarf relativ einfach über die Kommandozeile deinstalliert werden. In erster Linie reicht es aus, die UDEV-Regel-Datei zu löschen, da dadurch die Überwachung beendet wird. Alternativ kann auch die Shell-Skript-Datei, die autostart.sh auf dem externen Datenträger ausführt, gelöscht werden.
