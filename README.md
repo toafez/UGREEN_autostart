@@ -94,7 +94,7 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
 
   Du befindest dich nun im Wurzelverzeichnis deines USB-Sticks. Hier hast du zwei Möglichkeiten: Entweder du erstellst eine leere Skriptdatei mit dem Namen **autostart.sh** und füllst sie mit eigenen Inhalten. Oder du lädst mein nachfolgendes Beispielskript von GitHub herunter, um eine **synchrone rsync-Datensicherung auf einen externen Datenträger** durchzuführen. Dazu kannst du folgenden Befehl ausführen:
 
-    curl -L -O https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/autostart.sh
+      curl -L -O https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/autostart.sh
 
   Damit ist die Installation abgeschlossen. Die Überwachung der externen USB Datenträger ist nun aktiv und die Terminalverbindung kann durch Eingabe des Befehls `exit` beendet werden.
 
