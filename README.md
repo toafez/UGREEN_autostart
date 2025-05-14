@@ -47,7 +47,7 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
 
   Beginne mit der UDEV-Regel-Datei **99-usb-device-detection.rules**, kopiere die folgende Befehlszeile in dein geöffnetes Terminalfenster und führe den Befehl aus.
 
-	  sudo curl -L -O https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/99-usb-device-detection.rules -o /usr/lib/udev/rules.d/99-usb-device-detection.rules
+	  sudo curl -L https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/99-usb-device-detection.rules -o /usr/lib/udev/rules.d/99-usb-device-detection.rules
 
   Da der Befehl als Systembenutzer root ausgeführt werden muss (erkennbar am vorangestellten sudo-Befehl), wirst du ein weiteres Mal nach einem Passwort gefragt. Hier gibst du das gleiche Passwort ein, das du bereits für die Anmeldung als Administrator verwendet hast.
 
@@ -55,7 +55,7 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
 
   Fahre nun mit dem Überwachungsskript bzw. der Shell-Skriptdatei **usb-autostart-script-detection.sh** fort, kopiere die folgende Befehlszeile in dein geöffnetes Terminalfenster und führe den Befehl ebenfalls aus.
 
-	  sudo curl -L -O https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/usb-autostart-script-detection.sh -o /usr/local/bin/usb-autostart-script-detection.sh
+	  sudo curl -L https://raw.githubusercontent.com/toafez/UGREEN_autostart/refs/heads/main/scripts/usb-autostart-script-detection.sh -o /usr/local/bin/usb-autostart-script-detection.sh
 
   Da du dich zuvor bereits als root angemeldet hast, musst du das Passwort nicht noch einmal eingeben.
 
