@@ -68,11 +68,11 @@ Nun musst du eine UDEV-Regeldatei, ein Überwachungsskript und ein Ausführungss
     Standardmäßig ist die akustische Signalausgabe nach der Installation aktiviert. Dadurch erhältst du eine akustische Rückmeldung über den Status der aktuell ausgeführten Shell-Skriptdatei über den Lautsprecher deines UGREEN-NAS. Vor Beginn der Ausführung ertönt ein Signalton. Nach der Ausführung ertönt ein weiterer Signalton. Traten während der Ausführung Probleme auf, ertönt als Rückmeldung ein dreifacher Signalton.
     - **Ausschalten der akustischen Signalausgabe**
       
-           udo sed -i 's/signal=".*"/signal="false"/g' /usr/local/bin/usb-autostart-script-detection.sh
+           sudo sed -i 's/signal=".*"/signal="false"/g' /usr/local/bin/usb-autostart-script-detection.sh
 
     - **(Wieder-)einschalten der akustischen Signalausgabe**
    
-           udo sed -i 's/signal=".*"/signal="true"/g' /usr/local/bin/usb-autostart-script-detection.sh
+           sudo sed -i 's/signal=".*"/signal="true"/g' /usr/local/bin/usb-autostart-script-detection.sh
 
   Wie bereits eingangs erwähnt, überwacht autostart ab sofort, ob ein externer USB Datenträger an das UGREEN-NAS angeschlossen wurde und prüft, ob sich im Wurzelverzeichnis dieses externen Datenträgers bzw. auf den eingebundenen Partitionen ein Ausführungsskript mit dem Namen **autostart.sh** befindet. Derzeit sollte noch kein Ausführungsskript mit diesem Dateinamen existieren, daher wird es nachfolgend erstellt. 
 
