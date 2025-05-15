@@ -1,14 +1,17 @@
 #!/bin/bash
-# Path and file name 
+# Path and file name
 #  - /usr/local/bin/usb-autostart-script-detection.sh (755) - coded in utf-8
-
+#
+# Acoustic signal output true/false
+#  - sudo sed -i 's/signal=".*"/signal="true"/g' /usr/local/bin/usb-autostart-script-detection.sh
+#
 #                autostart für externe Datenträger
 #
 #                  Developed by tommes (toafez)
 #              MIT License https://mit-license.org/
 #        Member of the German UGREEN Forum - DACH Community
 #
-#       Dieses Script wurde speziell für die Verwendung auf 
+#       Dieses Script wurde speziell für die Verwendung auf
 #            UGREEN-NAS Systemen entwickelt die das
 #              Betriebsystem UGOS Pro verwenden.
 
@@ -27,6 +30,34 @@ timestamp() {
 	date +"%Y-%m-%d %H:%M:%S"
 }
 
+# Acoustic signal output
+signal="true"
+
+function signal_start()
+{
+	# Short beep
+	echo one > /proc/nas/beeper
+	sleep 1
+}
+
+function signal_stop()
+{
+	# Short beep
+	echo one > /proc/nas/beeper
+	sleep 1
+}
+
+function signal_warning()
+{
+	# Short beep
+	echo one > /proc/nas/beeper
+	sleep 1
+	# Short beep
+	echo one > /proc/nas/beeper
+	sleep 1
+	# Short beep
+	echo one > /proc/nas/beeper
+}
 # --------------------------------------------------------------
 # Take parameter %k (device name) from the udev rule
 # --------------------------------------------------------------
@@ -87,18 +118,23 @@ if [ -n "${mountpoint}" ] && [ -f "${mountpoint}/autostart.sh" ]; then
 	# Run the autostart script
 	# ----------------------------------------------------------
 	timestamp_start=$(date +%s)
+	[[ "${signal}" == "true" ]] && signal_start
+
 	IFS="
 	"
 	sudo ${scriptfile} "${logfile}" "${mountpoint}"
 	exit_script=${?}
 	IFS="${backupIFS}"
 
+	duration="$(($(date +%s) - timestamp_start))"
+	[[ "${signal}" == "true" && "${exit_script}" -eq 0 ]] && signal_stop
+	[[ "${signal}" == "true" && "${exit_script}" -ne 0 ]] && signal_warning
+
     # ----------------------------------------------------------
 	# Stop the autostart script
 	# ----------------------------------------------------------
 	echo "" | tee -a "${logfile}"
 	echo "------------------------------------------------------------" | tee -a "${logfile}"
-	duration="$(($(date +%s) - timestamp_start))"
 	echo "Das autostart Skript wurde beendet! " | tee -a "${logfile}"
 	echo "Ausgegebener Rückgabewert (Exit-Code): ${exit_script}" | tee -a "${logfile}"
 	echo "Dauer der Skriptausführung: "$(printf '%dh:%dm:%ds\n' $((duration/3600)) $((duration%3600/60)) $((duration%60)))"" | tee -a "${logfile}"
