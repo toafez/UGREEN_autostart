@@ -134,7 +134,7 @@ Aufgrund der oben genannten Sicherheitsmängel kann autostart bei Bedarf relativ
 
 ## Hilfe und Diskussion
 - Generelle Hilfe und Diskussionen gerne über das [UGREEN Forum - DACH Community](https://ugreen-forum.de/)
-- Oder gleich im passenden Thema im Forum [autostart für externe Datenträger](https://ugreen-forum.de/filebase/file/4-autostart-f%C3%BCr-externe-datentr%C3%A4ger/)
+- Oder gleich zum passenden Thema im Forum [autostart für externe Datenträger](https://ugreen-forum.de/filebase/file/4-autostart-f%C3%BCr-externe-datentr%C3%A4ger/)
 
 ## Lizenz
 - MIT License [LICENSE](LICENSE)
